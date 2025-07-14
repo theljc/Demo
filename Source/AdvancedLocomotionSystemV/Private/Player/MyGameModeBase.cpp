@@ -6,7 +6,7 @@
 void AMyGameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
-	GetWorld()->SpawnActor()
+	
 }
 
 void AMyGameModeBase::TravelToNewMap(const FString& MapPath)
