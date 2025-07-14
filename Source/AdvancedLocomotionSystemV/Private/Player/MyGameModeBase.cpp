@@ -9,7 +9,12 @@ void AMyGameModeBase::BeginPlay()
 	
 }
 
-void AMyGameModeBase::TravelTest()
+void AMyGameModeBase::TravelToNewMap(const FString& MapPath)
 {
-	GetWorld()->SeamlessTravel("/Game/Demo/Maps/test");
+	if (MapPath.IsEmpty()) return;
+	
+	if (UWorld* World = GetWorld())
+	{
+		World->SeamlessTravel(MapPath);
+	}
 }

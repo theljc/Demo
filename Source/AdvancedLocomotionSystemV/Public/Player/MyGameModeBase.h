@@ -19,8 +19,8 @@ public:
 	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintCallable)
-	void TravelTest();
+	void TravelToNewMap(const FString& MapPath);
 	
-	TObjectPtr<ACharacterBase_GAS> CharacterBase;
+	// TObjectPtr<ACharacterBase_GAS> CharacterBase;
 	
 };
