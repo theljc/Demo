@@ -39,5 +39,8 @@ protected:
 
 	UPROPERTY()
 	TObjectPtr<UWidgetControllerBase> WidgetControllerBase;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<UStaticMeshComponent> StaticMesh;
 	
 };

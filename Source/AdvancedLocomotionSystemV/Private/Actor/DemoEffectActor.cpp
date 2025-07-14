@@ -21,6 +21,9 @@ ADemoEffectActor::ADemoEffectActor()
 
 	SetRootComponent(CreateDefaultSubobject<USceneComponent>(TEXT("SceneRoot")));
 
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
+	StaticMesh->SetupAttachment(GetRootComponent());
+	
 }
 
 // Called when the game starts or when spawned
