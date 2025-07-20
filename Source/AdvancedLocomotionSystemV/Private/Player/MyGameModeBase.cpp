@@ -3,6 +3,13 @@
 
 #include "Player/MyGameModeBase.h"
 
+#include "Player/PlayerControllerBase.h"
+
+AMyGameModeBase::AMyGameModeBase()
+{
+	PlayerControllerClass = APlayerControllerBase::StaticClass();
+}
+
 void AMyGameModeBase::BeginPlay()
 {
 	Super::BeginPlay();

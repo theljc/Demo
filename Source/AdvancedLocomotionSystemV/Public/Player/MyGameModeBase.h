@@ -16,6 +16,8 @@ class ADVANCEDLOCOMOTIONSYSTEMV_API AMyGameModeBase : public AGameMode
 {
 	GENERATED_BODY()
 public:
+	AMyGameModeBase();
+	
 	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintCallable)
