@@ -7,6 +7,7 @@
 #include "AbilitySystem/DemoAbilitySystemComponent.h"
 #include "AbilitySystem/DemoAbilitySystemLibrary.h"
 #include "Components/WidgetComponent.h"
+#include "Data/DataAsset_Boss.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "UI/Widget/MainUserWidget.h"
 
@@ -24,6 +25,7 @@ AEnemyCharacter::AEnemyCharacter()
 	HealthBar = CreateDefaultSubobject<UWidgetComponent>("HealthBar");
 	HealthBar->SetupAttachment(GetRootComponent());
 
+	
 	// bUseControllerRotationPitch = false;
 	// bUseControllerRotationYaw = false;
 	// bUseControllerRotationRoll = false;
@@ -53,6 +55,15 @@ void AEnemyCharacter::HitReactTagChanged(const FGameplayTag CallBackTag, int32 N
 	// {
 	// 	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("HitReacting"), bHitReacting);
 	// }
+}
+
+void AEnemyCharacter::CreateDataInstance()
+{
+	if (BossDataClass != nullptr)
+	{
+		BossData = NewObject<UDataAsset_Boss>(this, BossDataClass);
+		UE_LOG(LogTemp, Log, TEXT("BossData"))
+	}
 }
 
 void AEnemyCharacter::BeginPlay()

@@ -7,8 +7,10 @@
 #include "UI/WidgetController/MainWidgetController.h"
 #include "EnemyCharacter.generated.h"
 
+class UDataAsset_Boss;
 class UBehaviorTree;
 class UWidgetComponent;
+
 /**
  * 
  */
@@ -30,6 +32,9 @@ public:
 	// End ICombatInterface
 	
 	void HitReactTagChanged(const FGameplayTag CallBackTag, int32 NewCount);
+
+	UFUNCTION(BlueprintCallable)
+	void CreateDataInstance();
 
 	UPROPERTY(BlueprintReadOnly, Category="Combat")
 	bool bHitReacting = false;
@@ -60,9 +65,15 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UWidgetComponent> HealthBar;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDataAsset_Boss> BossDataClass;
+
+	UPROPERTY(BlueprintReadOnly)
+	TObjectPtr<UDataAsset_Boss> BossData;
 	
-	UPROPERTY(EditDefaultsOnly, Category="AI")
-	TObjectPtr<UBehaviorTree> BehaviorTree;
+	// UPROPERTY(EditDefaultsOnly, Category="AI")
+	// TObjectPtr<UBehaviorTree> BehaviorTree;
 
 	// UPROPERTY()
 	// TObjectPtr<AAuraAIController> AuraAIController;

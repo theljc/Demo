@@ -32,10 +32,9 @@ void UAttributeSetBase::PostGameplayEffectExecute(const FGameplayEffectModCallba
 
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
 	{
-		float a = GetHealth();
-		SetHealth(FMath::Clamp(a, 0, GetMaxHealth()));
-		// SetHealth(FMath::Clamp(Data.EvaluatedData.Magnitude, 0, GetMaxHealth()));
+		SetHealth(FMath::Clamp(GetHealth(), 0, GetMaxHealth()));
 	}
+
 	
 }
 
@@ -44,14 +43,6 @@ void UAttributeSetBase::PostAttributeChange(const FGameplayAttribute& Attribute,
 {
 	Super::PostAttributeChange(Attribute, OldValue, NewValue);
 	
-	// if (Attribute == GetMaxHealthAttribute())
-	// {
-		// SetHealth(FMath::Clamp(GetHealth(), 0, GetMaxHealth()));
-	
-	// 	float a = GetHealth();
-	// 	float b = a;
-	// 	SetHealth(GetMaxHealth());
-	// }
 	
 }
 

@@ -77,9 +77,6 @@ protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attribute")
 	TSubclassOf<UGameplayEffect> DefaultStartUpGameplayEffectClass;
 
-	// UPROPERTY(BlueprintReadWrite)
-	
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
