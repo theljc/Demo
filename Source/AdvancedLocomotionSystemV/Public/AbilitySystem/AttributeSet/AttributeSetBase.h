@@ -44,11 +44,18 @@ public:
 		FGameplayAttributeData Damage;
 	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Damage)
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, ReplicatedUsing=OnRep_Resilience, Category = "Attribute")
+		FGameplayAttributeData Resilience;
+	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Resilience)
+	
 	UFUNCTION()
 	virtual void OnRep_Health(const FGameplayAttributeData& OldHealth) const;
 
 	UFUNCTION()
 	virtual void OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth) const;
+	
+	UFUNCTION()
+	virtual void OnRep_Resilience(const FGameplayAttributeData& OldResilience) const;
 	
 // protected:
 

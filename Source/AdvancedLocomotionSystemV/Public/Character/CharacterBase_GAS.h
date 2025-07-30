@@ -26,11 +26,11 @@ class ADVANCEDLOCOMOTIONSYSTEMV_API ACharacterBase_GAS : public ACharacter, publ
 	GENERATED_BODY()
 
 public:
+	ACharacterBase_GAS();
+	
 	UFUNCTION(BlueprintCallable)
 	bool GetCooldownRemainingForTag(FGameplayTagContainer CooldownTags, float& TimeRemaining, float& CooldownDuration);
 
-	// Sets default values for this character's properties
-	ACharacterBase_GAS();
 	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 

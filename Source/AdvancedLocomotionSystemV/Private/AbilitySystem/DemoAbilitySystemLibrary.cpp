@@ -3,6 +3,7 @@
 
 #include "AbilitySystem/DemoAbilitySystemLibrary.h"
 
+#include "AbilitySystemLog.h"
 #include "Kismet/GameplayStatics.h"
 #include "Player/PlayerStateBase.h"
 #include "UI/HUD/MainHUD.h"
@@ -21,4 +22,22 @@ UWidgetControllerBase* UDemoAbilitySystemLibrary::GetWidgetControllerBase(const 
 		}
 	}
 	return nullptr;
+}
+
+void UDemoAbilitySystemLibrary::SendGameplayEventToActor_Modify(AActor* Actor, FGameplayTag EventTag,
+	FGameplayEventData_Modify Payload)
+{
+	if (::IsValid(Actor))
+	{
+		UAbilitySystemComponent* AbilitySystemComponent = GetAbilitySystemComponent(Actor);
+		if (AbilitySystemComponent != nullptr && IsValidChecked(AbilitySystemComponent))
+		{
+			FScopedPredictionWindow NewScopedWindow(AbilitySystemComponent, true);
+			AbilitySystemComponent->HandleGameplayEvent(EventTag, &Payload);
+		}
+		else
+		{
+			ABILITY_LOG(Error, TEXT("UAbilitySystemBlueprintLibrary::SendGameplayEventToActor: Invalid ability system component retrieved from Actor %s. EventTag was %s"), *Actor->GetName(), *EventTag.ToString());
+		}
+	}
 }

@@ -41,8 +41,10 @@ enum EBossAttackType : uint8
 	EBAT_None UMETA(DisplayName = "None"),
 	// 每次攻击会有攻击类型，根据这个类型判断玩家的受击动画
 	EBAT_MeleeAttack UMETA(DisplayName = "Melee Attack"),
+	EBAT_MeleeAttack_Block UMETA(DisplayName = "Melee Attack Block"),
 	EBAT_MeleeAttack_HitDown UMETA(DisplayName = "Melee Attack HitDown"),
 	EBAT_RangedAttack UMETA(DisplayName = "Ranged Attack"),
+	EBAT_RangedAttack_Block UMETA(DisplayName = "Ranged Attack Block"),
 	EBAT_RangedAttack_HitDown UMETA(DisplayName = "Ranged Attack HitDown"),
 	
 };
@@ -97,6 +99,9 @@ class ADVANCEDLOCOMOTIONSYSTEMV_API UDataAsset_Boss : public UDataAsset
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
+	float RestoreTime;
+	
 	// 初始化属性的 GE
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
 	TSubclassOf<UGameplayEffect> InitGE;
