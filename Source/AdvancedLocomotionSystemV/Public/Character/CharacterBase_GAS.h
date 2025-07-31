@@ -19,6 +19,17 @@ struct FMyTargetData : public FGameplayAbilityTargetData
 	
 };
 
+UENUM(BlueprintType)
+enum EOnHitDirection : uint8
+{
+	OHD_None UMETA(DisplayName = "None"),
+
+	OHD_Front UMETA(DisplayName = "Front"),
+	OHD_Back UMETA(DisplayName = "Back"),
+	OHD_Left UMETA(DisplayName = "Left"),
+	OHD_Right UMETA(DisplayName = "Right"),
+};
+
 
 UCLASS()
 class ADVANCEDLOCOMOTIONSYSTEMV_API ACharacterBase_GAS : public ACharacter, public IAbilitySystemInterface

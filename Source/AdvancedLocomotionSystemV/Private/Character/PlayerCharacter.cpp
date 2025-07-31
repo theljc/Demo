@@ -153,7 +153,7 @@ void APlayerCharacter::InitAbilityActorInfo()
 	}
 	else
 	{
-		PlayerStateBase->PlayerStateEnum = EPlayerStateEnum::EPS_Normal;
+		PlayerStateBase->PlayerStateEnum = EPlayerStateEnum::EPS_Idle;
 	}
 
 

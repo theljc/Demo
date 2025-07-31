@@ -4,7 +4,6 @@
 #include "AbilitySystem/DemoAbilitySystemComponent.h"
 #include "AbilitySystem/DemoAbilitySystemLibrary.h"
 #include "AbilitySystem/AttributeSet/AttributeSetBase.h"
-#include "Net/UnrealNetwork.h"
 #include "UI/WidgetController/WidgetControllerBase.h"
 
 APlayerStateBase::APlayerStateBase()
@@ -23,7 +22,7 @@ void APlayerStateBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	PlayerStateEnum = EPlayerStateEnum::EPS_Normal;
+	PlayerStateEnum = EPlayerStateEnum::EPS_Idle;
 	
 }
 

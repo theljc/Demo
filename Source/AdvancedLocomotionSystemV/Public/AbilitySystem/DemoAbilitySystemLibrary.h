@@ -30,8 +30,5 @@ class ADVANCEDLOCOMOTIONSYSTEMV_API UDemoAbilitySystemLibrary : public UAbilityS
 public:
 	UFUNCTION(BlueprintPure, Category = "AbilitySystemLibrary|WidgetController")
 	static UWidgetControllerBase* GetWidgetControllerBase(const UObject* WorldContextObject);
-
-	UFUNCTION(BlueprintCallable, Category = "My_AS_Library")
-	static void SendGameplayEventToActor_Modify(AActor* Actor, FGameplayTag EventTag, FGameplayEventData_Modify Payload);
-
+	
 };

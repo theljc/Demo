@@ -8,6 +8,20 @@
 #include "Engine/DataAsset.h"
 #include "DataAsset_Boss.generated.h"
 
+enum EOnHitDirection : uint8;
+class UDataAsset_Boss;
+
+USTRUCT(BlueprintType)
+struct FTableRow_Boss : public FTableRowBase
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TObjectPtr<UDataAsset_Boss> DA_Boss;
+	
+};
+
+
 UENUM(Blueprintable, BlueprintType)
 enum EBossCombatState : uint8
 {
@@ -19,7 +33,7 @@ enum EBossCombatState : uint8
 	EBCS_OnHit UMETA(DisplayName = "OnHit"),
 	EBCS_Blocked UMETA(DisplayName = "Blocked"),
 	EBCS_Executed UMETA(DisplayName = "Executed"),
-	EBCS_Death UMETA(DisplayName = "Death"),
+	EBCS_Dead UMETA(DisplayName = "Dead"),
 	
 };
 
@@ -87,7 +101,13 @@ struct FBossOnHitAbilityInfo
 	GENERATED_BODY()
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TMap<TEnumAsByte<EBossOnHitType>, TObjectPtr<UAnimMontage>> MappedOnHitMontage;
+	TEnumAsByte<EBossOnHitType> OnHitType;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TEnumAsByte<EOnHitDirection> OnHitDirection;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TObjectPtr<UAnimMontage> OnHitMontage;
 	
 };
 
@@ -125,5 +145,13 @@ public:
 	// 受击信息
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="OnHit Properties")
 	TArray<FBossOnHitAbilityInfo> OnHitAbilityInfo;
+
+	// 防御 Tag
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
+	FGameplayTag DefenseActiveTag = FGameplayTag();
+
+	// 防御动画
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
+	TObjectPtr<UAnimMontage> DefenseMontage;
 	
 };

@@ -25,6 +25,7 @@ AEnemyCharacter::AEnemyCharacter()
 	HealthBar = CreateDefaultSubobject<UWidgetComponent>("HealthBar");
 	HealthBar->SetupAttachment(GetRootComponent());
 
+	// BossData = CreateDefaultSubobject<UDataAsset_Boss>("BossData");
 	
 	// bUseControllerRotationPitch = false;
 	// bUseControllerRotationYaw = false;
@@ -59,11 +60,11 @@ void AEnemyCharacter::HitReactTagChanged(const FGameplayTag CallBackTag, int32 N
 
 void AEnemyCharacter::CreateDataInstance()
 {
-	if (BossDataClass != nullptr)
-	{
-		BossData = NewObject<UDataAsset_Boss>(this, BossDataClass);
-		UE_LOG(LogTemp, Log, TEXT("BossData"))
-	}
+	// if (BossDataClass != nullptr)
+	// {
+	// 	BossData = NewObject<UDataAsset_Boss>(this, BossDataClass);
+	// 	UE_LOG(LogTemp, Log, TEXT("BossData"))
+	// }
 }
 
 void AEnemyCharacter::BeginPlay()

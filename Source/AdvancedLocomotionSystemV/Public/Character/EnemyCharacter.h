@@ -66,11 +66,11 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UWidgetComponent> HealthBar;
 
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<UDataAsset_Boss> BossDataClass;
+	// UPROPERTY(EditDefaultsOnly)
+	// TSubclassOf<UDataAsset_Boss> BossDataClass;
 
-	UPROPERTY(BlueprintReadOnly)
-	TObjectPtr<UDataAsset_Boss> BossData;
+	// UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	// TObjectPtr<UDataAsset_Boss> BossData;
 	
 	// UPROPERTY(EditDefaultsOnly, Category="AI")
 	// TObjectPtr<UBehaviorTree> BehaviorTree;
