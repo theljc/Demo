@@ -60,7 +60,7 @@ void APlayerCharacter::PossessedBy(AController* NewController)
 		// 初始化 ActorInfo
 		InitAbilityActorInfo();
 		// 激活初始 GA
-		AddCharacterAbilities();
+		// AddCharacterAbilities();
 	}
 	
 	APlayerController* PlayerController = Cast<APlayerController>(NewController);
@@ -117,6 +117,8 @@ void APlayerCharacter::Server_SetAcceleration_Implementation(FVector NewAccelera
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	AddCharacterAbilities();
 	
 }
 

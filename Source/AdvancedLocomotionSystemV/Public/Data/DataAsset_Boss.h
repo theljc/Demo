@@ -30,6 +30,8 @@ enum EBossCombatState : uint8
 	EBCS_Idle UMETA(DisplayName = "Idle"),
 	EBCS_Move UMETA(DisplayName = "Move"),
 	EBCS_Attack UMETA(DisplayName = "Attack"),
+	EPCS_Defense UMETA(DisplayName = "Defense"),
+	EPCS_DefenseOnHit UMETA(DisplayName = "Defense OnHit"),
 	EBCS_OnHit UMETA(DisplayName = "OnHit"),
 	EBCS_Blocked UMETA(DisplayName = "Blocked"),
 	EBCS_Executed UMETA(DisplayName = "Executed"),
@@ -82,6 +84,18 @@ struct FBossAttackAbilityInfo
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	FGameplayTag AttackActiveTag = FGameplayTag();
+
+	// 伤害
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	float AttackDamage;
+
+	// 冷却
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	float CoolDown;
+
+	// 削弱玩家的耐力值
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	float WeakeningEndurance;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UAnimMontage> AttackMontages;
@@ -91,6 +105,10 @@ struct FBossAttackAbilityInfo
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSubclassOf<UGameplayAbility> AttackGA;
+
+	// 攻击命中后施加伤害的 GE
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TSubclassOf<UGameplayEffect> GE_ApplyDamage;
 	
 };
 
@@ -146,6 +164,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="OnHit Properties")
 	TArray<FBossOnHitAbilityInfo> OnHitAbilityInfo;
 
+	// 受击触发的 GA
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="OnHit Properties")
+	TSubclassOf<UGameplayAbility> GA_OnHit;
+
 	// 防御 Tag
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
 	FGameplayTag DefenseActiveTag = FGameplayTag();
@@ -153,5 +175,33 @@ public:
 	// 防御动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
 	TObjectPtr<UAnimMontage> DefenseMontage;
+
+	// 防御 GA
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
+	TSubclassOf<UGameplayAbility> GA_Defense;
+
+	// 防御受击 Tag
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DefenseOnHit Properties")
+	FGameplayTag DefenseOnHitActiveTag = FGameplayTag();
+
+	// 防御受击动画
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DefenseOnHit Properties")
+	TObjectPtr<UAnimMontage> DefenseOnHitMontage;
+
+	// 防御受击 GA
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DefenseOnHit Properties")
+	TSubclassOf<UGameplayAbility> GA_DefenseOnHit;
+
+	// Block Tag
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Block Properties")
+	FGameplayTag BlockActiveTag = FGameplayTag();
+
+	// Block 动画
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Block Properties")
+	TObjectPtr<UAnimMontage> BlockMontage;
+
+	// Block GA
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Block Properties")
+	TSubclassOf<UGameplayAbility> GA_Block;
 	
 };

@@ -34,6 +34,10 @@ enum EPlayerStateEnum : uint8
 	EPS_Move UMETA(DisplayName = "Move"),
 	// 攻击状态
 	EPS_Attack UMETA(DisplayName = "Attack"),
+	// 防御状态
+	EPS_Defense UMETA(DisplayName = "Defense"),
+	// 防御受击状态
+	EPS_DefenseOnHit UMETA(DisplayName = "Defense OnHit"),
 	// 受击状态
 	EPS_OnHit UMETA(DisplayName = "OnHit"),
 	// 被打断
@@ -75,6 +79,18 @@ struct FPlayerAttackAbilityInfo
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	FGameplayTag AttackActiveTag = FGameplayTag();
 
+	// 伤害
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	float AttackDamage;
+
+	// 冷却
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	float CoolDown;
+
+	// 削韧值
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	float WeakeningResilience;
+
 	// 攻击动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UAnimMontage> AttackMontages;
@@ -86,6 +102,14 @@ struct FPlayerAttackAbilityInfo
 	// 攻击的 GA
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSubclassOf<UGameplayAbility> AttackGA;
+
+	// 攻击命中后施加伤害的 GE
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TSubclassOf<UGameplayEffect> GE_ApplyDamage;
+
+	// 攻击命中后施加伤害的 GE
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TSubclassOf<UGameplayEffect> GE_ApplyWeakeningResilience;
 	
 };
 
@@ -106,10 +130,12 @@ USTRUCT(BlueprintType)
 struct FPlayerOnHitAbilityInfo
 {
 	GENERATED_BODY()
-	
+
+	// 受击类型
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TEnumAsByte<EPlayerOnHitType> OnHitType;
 
+	// 受击方向
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TEnumAsByte<EOnHitDirection> OnHitDirection;
 	
@@ -129,7 +155,7 @@ class ADVANCEDLOCOMOTIONSYSTEMV_API UDataAsset_Player : public UDataAsset
 public:
 	// 初始生命值
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
-	float Health;
+	float InitHealth;
 	
 	// 初始化属性的 GE
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
@@ -147,6 +173,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="OnHit Properties")
 	FGameplayTag OnHitActiveTag = FGameplayTag();
 
+	// 受击时触发的 GA
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="OnHit Properties")
+	TSubclassOf<UGameplayAbility> OnHit_GA;
+
 	// 受击信息
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="OnHit Properties")
 	TArray<FPlayerOnHitAbilityInfo> OnHitAbilityInfo;
@@ -158,5 +188,33 @@ public:
 	// 防御动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
 	TObjectPtr<UAnimMontage> DefenseMontage;
+
+	// 防御 GA
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
+	TSubclassOf<UGameplayAbility> GA_Defense;
+
+	// 防御受击 Tag
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DefenseOnHit Properties")
+	FGameplayTag DefenseOnHitActiveTag = FGameplayTag();
+
+	// 防御受击动画
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DefenseOnHit Properties")
+	TObjectPtr<UAnimMontage> DefenseOnHitMontage;
+
+	// 防御受击 GA
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DefenseOnHit Properties")
+	TSubclassOf<UGameplayAbility> GA_DefenseOnHit;
+
+	// Block Tag
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Block Properties")
+	FGameplayTag BlockActiveTag = FGameplayTag();
+
+	// Block 动画
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Block Properties")
+	TObjectPtr<UAnimMontage> BlockMontage;
+
+	// Block GA
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Block Properties")
+	TSubclassOf<UGameplayAbility> GA_Block;
 	
 };

@@ -40,7 +40,6 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	virtual void Tick(float DeltaSeconds) override;
 	virtual void OnRep_ReplicatedMovement() override;
-	
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void Blueprint_PossessedBy(APlayerController* NewPlayerController);
