@@ -33,6 +33,9 @@ public:
 	
 	void HitReactTagChanged(const FGameplayTag CallBackTag, int32 NewCount);
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnASCInit();
+
 	UFUNCTION(BlueprintCallable)
 	void CreateDataInstance();
 
@@ -53,6 +56,12 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangedSignature OnMaxHealthChanged;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnResilienceChanged;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnMaxResilienceChanged;
 	
 protected:
 	virtual void BeginPlay() override;

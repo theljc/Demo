@@ -87,6 +87,8 @@ void AEnemyCharacter::BeginPlay()
 		MainUserWidget->SetWidgetController(this);
 	}
 
+	OnASCInit();
+	
 	const UAttributeSetBase* ASBase = Cast<UAttributeSetBase>(AttributeSet);
 	if (ASBase)
 	{
@@ -101,6 +103,16 @@ void AEnemyCharacter::BeginPlay()
 			{
 				OnMaxHealthChanged.Broadcast(Data.NewValue);
 			});
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(ASBase->GetResilienceAttribute()).AddLambda(
+			[this](const FOnAttributeChangeData& Data)
+			{
+				OnResilienceChanged.Broadcast(Data.NewValue);
+			});
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(ASBase->GetResilienceAttribute()).AddLambda(
+			[this](const FOnAttributeChangeData& Data)
+			{
+				OnMaxResilienceChanged.Broadcast(Data.NewValue);
+			});
 
 		
 		// AbilitySystemComponent->RegisterGameplayTagEvent(FDemoGameplayTags::Get().Effect_HitReact, EGameplayTagEventType::NewOrRemoved).AddUObject(
@@ -111,6 +123,8 @@ void AEnemyCharacter::BeginPlay()
 		// 初始广播生命值和最大生命值
 		OnHealthChanged.Broadcast(ASBase->GetHealth());
 		OnMaxHealthChanged.Broadcast(ASBase->GetMaxHealth());
+		OnResilienceChanged.Broadcast(ASBase->GetResilience());
+		OnMaxResilienceChanged.Broadcast(ASBase->GetMaxResilience());
 		
 	}
 }

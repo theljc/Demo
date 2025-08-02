@@ -17,11 +17,17 @@ UAttributeSetBase::UAttributeSetBase()
 void UAttributeSetBase::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
 {
 	Super::PreAttributeChange(Attribute, NewValue);
-
+	
 	// 生命值改变时
 	if (Attribute == GetHealthAttribute())
 	{
 		NewValue = FMath::Clamp(NewValue, 0.0f, GetMaxHealth());
+	}
+
+	// 韧性值改变时
+	if (Attribute == GetResilienceAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0.0f, GetMaxResilience());
 	}
 	
 }
@@ -33,6 +39,11 @@ void UAttributeSetBase::PostGameplayEffectExecute(const FGameplayEffectModCallba
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
 	{
 		SetHealth(FMath::Clamp(GetHealth(), 0, GetMaxHealth()));
+	}
+
+	if (Data.EvaluatedData.Attribute == GetResilienceAttribute())
+	{
+		SetResilience(FMath::Clamp(GetResilience(), 0, GetMaxResilience()));
 	}
 
 	
@@ -54,6 +65,7 @@ void UAttributeSetBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME_CONDITION_NOTIFY(UAttributeSetBase, Health, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAttributeSetBase, MaxHealth, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAttributeSetBase, Resilience, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAttributeSetBase, MaxResilience, COND_None, REPNOTIFY_Always);
 
 }
 
@@ -71,4 +83,9 @@ void UAttributeSetBase::OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHeal
 void UAttributeSetBase::OnRep_Resilience(const FGameplayAttributeData& OldResilience) const
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAttributeSetBase, Resilience, OldResilience);
+}
+
+void UAttributeSetBase::OnRep_MaxResilience(const FGameplayAttributeData& OldMaxResilience) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAttributeSetBase, MaxResilience, OldMaxResilience);
 }

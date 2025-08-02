@@ -35,7 +35,16 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, ReplicatedUsing=OnRep_MaxHealth, Category = "Attribute")
 		FGameplayAttributeData MaxHealth;
 	ATTRIBUTE_ACCESSORS(UAttributeSetBase, MaxHealth)
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, ReplicatedUsing=OnRep_MaxResilience, Category = "Attribute")
+		FGameplayAttributeData MaxResilience;
+	ATTRIBUTE_ACCESSORS(UAttributeSetBase, MaxResilience)
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, ReplicatedUsing=OnRep_Resilience, Category = "Attribute")
+		FGameplayAttributeData Resilience;
+	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Resilience)
 
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Attribute")
 		FGameplayAttributeData CoolDown;
 	ATTRIBUTE_ACCESSORS(UAttributeSetBase, CoolDown)
@@ -44,9 +53,6 @@ public:
 		FGameplayAttributeData Damage;
 	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Damage)
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, ReplicatedUsing=OnRep_Resilience, Category = "Attribute")
-		FGameplayAttributeData Resilience;
-	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Resilience)
 	
 	UFUNCTION()
 	virtual void OnRep_Health(const FGameplayAttributeData& OldHealth) const;
@@ -56,6 +62,9 @@ public:
 	
 	UFUNCTION()
 	virtual void OnRep_Resilience(const FGameplayAttributeData& OldResilience) const;
+	
+	UFUNCTION()
+	virtual void OnRep_MaxResilience(const FGameplayAttributeData& OldMaxResilience) const;
 	
 // protected:
 
