@@ -14,7 +14,7 @@ class UGameplayAbility;
 class UDataAsset_Player;
 
 USTRUCT(BlueprintType)
-struct FTableRow_Player : public FTableRowBase
+struct FTableRow_Player : public FTableRow_CharacterBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -47,19 +47,17 @@ enum EPlayerStateEnum : uint8
 	EPS_Execution UMETA(DisplayName="Execution"),
 	//  附身状态
 	EPS_Possession UMETA(DisplayName="Possession"),
-	// 攀爬状态
-	EPS_Mantle UMETA(DisplayName="Mantle"),
 	// 死亡状态
 	EPS_Dead UMETA(DisplayName = "Dead"), 
 	
 };
 
+// 每次攻击会有攻击类型，根据这个类型判断敌人的受击动画
 UENUM(BlueprintType)
 enum EPlayerAttackType : uint8
 {
 	EPAT_None UMETA(DisplayName = "None"),
 	
-	// 每次攻击会有攻击类型，根据这个类型判断敌人的受击动画
 	EPAT_MeleeAttack UMETA(DisplayName = "Melee Attack"),
 	EPAT_MeleeAttack_Block UMETA(DisplayName = "Melee Attack Block"),
 	EPAT_MeleeAttack_HitDown UMETA(DisplayName = "Melee Attack HitDown"),
@@ -118,13 +116,12 @@ struct FPlayerAttackAbilityInfo
 	
 };
 
-
+// 玩家的受击类型
 UENUM(BlueprintType)
 enum EPlayerOnHitType : uint8
 {
 	EPOHT_None UMETA(DisplayName = "None"),
 
-	// 玩家的受击类型
 	EPOHT_NormalHit UMETA(DisplayName = "Normal Hit"),
 	EPOHT_BlockedHit UMETA(DisplayName = "Blocked Hit"),
 	EPOHT_HitDown UMETA(DisplayName = "HitDown"),
@@ -135,7 +132,7 @@ USTRUCT(BlueprintType)
 struct FPlayerOnHitAbilityInfo
 {
 	GENERATED_BODY()
-
+	
 	// 受击类型
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TEnumAsByte<EPlayerOnHitType> OnHitType;
@@ -144,9 +141,56 @@ struct FPlayerOnHitAbilityInfo
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TEnumAsByte<EOnHitDirection> OnHitDirection;
 	
-	// 通过受击类型映射受击动画
+	// 受击动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UAnimMontage> OnHitMontage;
+	
+};
+
+// 玩家闪避时的方向，直接在蓝图中配置
+UENUM(BlueprintType)
+enum EPlayerDodgeDirection : uint8
+{
+	EPDD_None UMETA(DisplayName = "None"),
+	
+	EPDD_Front UMETA(DisplayName = "Front"),
+	EPDD_Back UMETA(DisplayName = "Back"),
+	EPDD_Left UMETA(DisplayName = "Left"),
+	EPDD_Right UMETA(DisplayName = "Right"),
+};
+
+// 玩家的移动状态
+UENUM(BlueprintType)
+enum EPlayerMovementState : uint8
+{
+	EPMS_None UMETA(DisplayName = "None"),
+	
+	// 处于地面
+	EPMS_Ground UMETA(DisplayName = "Ground"),
+	// 处于空中
+	EPMS_InAir UMETA(DisplayName = "InAir"),
+	// 处于攀爬
+	EPS_Mantle UMETA(DisplayName="Mantle"),
+	
+};
+
+// 闪避信息
+USTRUCT(BlueprintType)
+struct FPlayerDodgeAbilityInfo
+{
+	GENERATED_BODY()
+
+	// 移动状态
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TEnumAsByte<EPlayerMovementState> MovementState;
+	
+	// 闪避方向
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TEnumAsByte<EPlayerDodgeDirection> DodgeDirection;
+
+	// 闪避动画
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TObjectPtr<UAnimMontage> DodgeMontage;
 	
 };
 
@@ -158,7 +202,9 @@ class ADVANCEDLOCOMOTIONSYSTEMV_API UDataAsset_Player : public UDataAsset_Base
 {
 	GENERATED_BODY()
 public:
-
+	// IInterface_DataAsset 接口
+	virtual UDataAsset_Player* GetDataAsset_Player_Implementation() override;
+	
 	// 玩家战斗状态
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
 	TEnumAsByte<EPlayerStateEnum> PlayerCombatState;
@@ -186,5 +232,14 @@ public:
 	// HitDown 动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HitDown Properties")
 	TObjectPtr<UAnimMontage> HitDownMontage;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Dodge Properties")
+	FGameplayTag DodgeActiveTag = FGameplayTag();
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Dodge Properties")
+	TArray<FPlayerDodgeAbilityInfo> DodgeAbilityInfo;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Dodge Properties")
+	TSubclassOf<UGameplayAbility> GA_Dodge;
 	
 };

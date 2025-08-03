@@ -5,15 +5,37 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "Engine/DataAsset.h"
+#include "Interface/Interface_DataAsset.h"
 #include "DataAsset_Base.generated.h"
 
 class UGameplayEffect;
 class UGameplayAbility;
+
+
+USTRUCT(BlueprintType)
+struct FTableRow_CharacterBase : public FTableRowBase
+{
+	GENERATED_USTRUCT_BODY()
+	
+};
+
+UENUM(BlueprintType)
+enum EOnHitDirection : uint8
+{
+	OHD_None UMETA(DisplayName = "None"),
+
+	OHD_Front UMETA(DisplayName = "Front"),
+	OHD_Back UMETA(DisplayName = "Back"),
+	OHD_Left UMETA(DisplayName = "Left"),
+	OHD_Right UMETA(DisplayName = "Right"),
+};
+
+
 /**
  * 
  */
-UCLASS()
-class ADVANCEDLOCOMOTIONSYSTEMV_API UDataAsset_Base : public UDataAsset
+UCLASS(BlueprintType, Blueprintable)
+class ADVANCEDLOCOMOTIONSYSTEMV_API UDataAsset_Base : public UDataAsset, public IInterface_DataAsset
 {
 	GENERATED_BODY()
 public:

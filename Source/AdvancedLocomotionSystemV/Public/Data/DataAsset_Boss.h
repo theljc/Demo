@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "DataAsset_Base.h"
+#include "DataAsset_EnemyBase.h"
 #include "GameplayTagContainer.h"
 #include "Abilities/GameplayAbility.h"
 #include "Engine/DataAsset.h"
@@ -13,7 +13,7 @@ enum EOnHitDirection : uint8;
 class UDataAsset_Boss;
 
 USTRUCT(BlueprintType)
-struct FTableRow_Boss : public FTableRowBase
+struct FTableRow_Boss : public FTableRow_EnemyBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -31,8 +31,8 @@ enum EBossCombatState : uint8
 	EBCS_Idle UMETA(DisplayName = "Idle"),
 	EBCS_Move UMETA(DisplayName = "Move"),
 	EBCS_Attack UMETA(DisplayName = "Attack"),
-	EPCS_Defense UMETA(DisplayName = "Defense"),
-	EPCS_DefenseOnHit UMETA(DisplayName = "Defense OnHit"),
+	EBCS_Defense UMETA(DisplayName = "Defense"),
+	EBCS_DefenseOnHit UMETA(DisplayName = "Defense OnHit"),
 	EBCS_OnHit UMETA(DisplayName = "OnHit"),
 	EBCS_Blocked UMETA(DisplayName = "Blocked"),
 	EBCS_Executed UMETA(DisplayName = "Executed"),
@@ -79,7 +79,7 @@ enum EBossOnHitType : uint8
 
 // 每个攻击动作的数据
 USTRUCT(BlueprintType)
-struct FBossAttackAbilityInfo
+struct FBossAttackAbilityInfo : public FEnemyAttackAbilityInfoBase
 {
 	GENERATED_BODY()
 	
@@ -115,7 +115,7 @@ struct FBossAttackAbilityInfo
 
 // 受击时根据受击类型播放不同的受击动画
 USTRUCT(BlueprintType)
-struct FBossOnHitAbilityInfo
+struct FBossOnHitAbilityInfo : public FEnemyOnHitAbilityInfoBase
 {
 	GENERATED_BODY()
 
@@ -134,10 +134,13 @@ struct FBossOnHitAbilityInfo
  * 
  */
 UCLASS(BlueprintType, Blueprintable)
-class ADVANCEDLOCOMOTIONSYSTEMV_API UDataAsset_Boss : public UDataAsset_Base
+class ADVANCEDLOCOMOTIONSYSTEMV_API UDataAsset_Boss : public UDataAsset_EnemyBase
 {
 	GENERATED_BODY()
 public:
+	// IInterface_DataAsset 接口
+	virtual UDataAsset_Boss* GetDataAsset_Boss_Implementation() override;
+	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
 	float RestoreTime;
 
