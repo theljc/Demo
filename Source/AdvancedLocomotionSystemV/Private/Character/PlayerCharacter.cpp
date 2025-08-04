@@ -50,18 +50,15 @@ void APlayerCharacter::OnRep_ReplicatedMovement()
 void APlayerCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
-
-	APlayerStateBase* PlayerStateBase = GetPlayerState<APlayerStateBase>();
-	check(PlayerStateBase);
 	
-	if(PlayerStateBase->PlayerStateEnum != EPlayerStateEnum::EPS_Possession)
-	{
-		// 服务器运行时调用
-		// 初始化 ActorInfo
-		InitAbilityActorInfo();
+	// 初始化 ActorInfo
+	InitAbilityActorInfo();
+	
+	// if(PlayerStateBase->PlayerStateEnum != EPlayerStateEnum::EPS_Dead && PlayerStateBase->PlayerStateEnum != EPlayerStateEnum::EPS_Possession)
+	// {
 		// 激活初始 GA
 		// AddCharacterAbilities();
-	}
+	// }
 	
 	APlayerController* PlayerController = Cast<APlayerController>(NewController);
 	// 调用蓝图事件
@@ -117,8 +114,20 @@ void APlayerCharacter::Server_SetAcceleration_Implementation(FVector NewAccelera
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	AddCharacterAbilities();
+
+	if (Controller)
+	{
+		
+		APlayerStateBase* PlayerStateBase = Cast<APlayerStateBase>(Controller->PlayerState);
+		
+		check(PlayerStateBase);
+		
+		if(PlayerStateBase->PlayerStateEnum != EPlayerStateEnum::EPS_Dead && PlayerStateBase->PlayerStateEnum != EPlayerStateEnum::EPS_Possession)
+		{
+			// 激活初始 GA
+			AddCharacterAbilities();
+		}
+	}
 	
 }
 
@@ -136,9 +145,9 @@ void APlayerCharacter::InitAbilityActorInfo()
 
 	// 调用 AbilityActorInfoSet 表示 ActorInfo 已经设置好了
 	Cast<UDemoAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
-	
-	
-	if (PlayerStateBase->PlayerStateEnum != EPlayerStateEnum::EPS_Dead)
+
+	// 从死亡和附身状态恢复时不执行
+	if (PlayerStateBase->PlayerStateEnum != EPlayerStateEnum::EPS_Dead && PlayerStateBase->PlayerStateEnum != EPlayerStateEnum::EPS_Possession)
 	{
 		APlayerControllerBase* PlayerControllerBase = Cast<APlayerControllerBase>(GetController());
 		if (PlayerControllerBase)
@@ -151,7 +160,8 @@ void APlayerCharacter::InitAbilityActorInfo()
 		}
 
 		// 用 GE 初始化属性，这里在客户端和服务器上都进行了初始化，实际上可以只在服务器进行，之后复制到客户端
-		InitializeDefaultAttributes();
+		// 初始化已经在蓝图中做了
+		// InitializeDefaultAttributes();
 	}
 	else
 	{

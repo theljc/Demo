@@ -157,6 +157,7 @@ enum EPlayerDodgeDirection : uint8
 	EPDD_Back UMETA(DisplayName = "Back"),
 	EPDD_Left UMETA(DisplayName = "Left"),
 	EPDD_Right UMETA(DisplayName = "Right"),
+	
 };
 
 // 玩家的移动状态
@@ -170,7 +171,9 @@ enum EPlayerMovementState : uint8
 	// 处于空中
 	EPMS_InAir UMETA(DisplayName = "InAir"),
 	// 处于攀爬
-	EPS_Mantle UMETA(DisplayName="Mantle"),
+	EPMS_Mantle UMETA(DisplayName="Mantle"),
+	// 处于布娃娃
+	EPMS_Ragdoll UMETA(DisplayName="Ragdoll"),
 	
 };
 
