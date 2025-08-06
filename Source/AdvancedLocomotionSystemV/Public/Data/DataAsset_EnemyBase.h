@@ -14,6 +14,20 @@ struct FTableRow_EnemyBase : public FTableRow_CharacterBase
 	
 };
 
+// 敌人的所有覆盖状态
+UENUM(BlueprintType)
+enum EEnemyOverlayState : uint8
+{
+	EEOS_None UMETA(DisplayName = "None"),
+	
+	EEOS_Default UMETA(DisplayName = "Default"),
+	EEOS_Sword UMETA(DisplayName = "Sword"),
+	EEOS_Rifle UMETA(DisplayName = "Rifle"),
+	EEOS_Scythe UMETA(DisplayName = "Scythe"),
+	EEOS_ScytheFly UMETA(DisplayName = "Scythe Fly"),
+	
+};
+
 // 敌人的移动状态
 UENUM(BlueprintType)
 enum EEnemyMovementState : uint8

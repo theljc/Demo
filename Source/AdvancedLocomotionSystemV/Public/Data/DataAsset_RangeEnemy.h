@@ -115,6 +115,9 @@ struct FRangeEnemyOnHitAbilityInfo : public FEnemyOnHitAbilityInfoBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TEnumAsByte<EEnemyOverlayState> RangeEnemyOverlayState;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TEnumAsByte<ERangeEnemyOnHitType> OnHitType;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)

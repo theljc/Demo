@@ -23,6 +23,17 @@ struct FTableRow_Player : public FTableRow_CharacterBase
 	
 };
 
+// 玩家的所有覆盖状态
+UENUM(BlueprintType)
+enum EPlayerOverlayState : uint8
+{
+	EPOS_None UMETA(DisplayName = "None"),
+	
+	EPOS_Default UMETA(DisplayName = "Default"),
+	EPOS_Sword UMETA(DisplayName = "Sword"),
+	
+};
+
 // 玩家战斗时的状态
 UENUM(BlueprintType)
 enum EPlayerStateEnum : uint8
@@ -132,6 +143,10 @@ USTRUCT(BlueprintType)
 struct FPlayerOnHitAbilityInfo
 {
 	GENERATED_BODY()
+
+	// 玩家的覆盖状态
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TEnumAsByte<EPlayerOverlayState> PlayerOverlayState;
 	
 	// 受击类型
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)

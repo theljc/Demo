@@ -118,6 +118,9 @@ struct FMeleeEnemyOnHitAbilityInfo : public FEnemyOnHitAbilityInfoBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TEnumAsByte<EEnemyOverlayState> MeleeEnemyOverlayState;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TEnumAsByte<EMeleeEnemyOnHitType> OnHitType;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)

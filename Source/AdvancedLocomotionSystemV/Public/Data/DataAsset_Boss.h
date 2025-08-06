@@ -120,6 +120,9 @@ struct FBossOnHitAbilityInfo : public FEnemyOnHitAbilityInfoBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TEnumAsByte<EEnemyOverlayState> BossOverlayState;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TEnumAsByte<EBossOnHitType> OnHitType;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
