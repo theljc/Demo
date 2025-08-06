@@ -8,7 +8,7 @@ public class AdvancedLocomotionSystemVEditorTarget : TargetRules
 	public AdvancedLocomotionSystemVEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
+		DefaultBuildSettings = BuildSettingsVersion.Latest;
 
 		ExtraModuleNames.AddRange( new string[] { "AdvancedLocomotionSystemV" } );
 	}

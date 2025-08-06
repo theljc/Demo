@@ -8,7 +8,7 @@ public class AdvancedLocomotionSystemV : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "GameplayAbilities", "AIModule" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "GameplayAbilities", "AIModule", "UMG"});
 		
 		PrivateDependencyModuleNames.AddRange(new string[] { "GameplayTasks", "GameplayTags", "Niagara", "AIModule" });
 
