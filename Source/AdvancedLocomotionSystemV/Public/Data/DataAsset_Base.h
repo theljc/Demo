@@ -19,6 +19,26 @@ struct FTableRow_CharacterBase : public FTableRowBase
 	
 };
 
+USTRUCT(BlueprintType)
+struct FCharacterAttackAbilityInfo
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FGameplayTag AttackMessageTag = FGameplayTag();
+	
+};
+
+USTRUCT(BlueprintType)
+struct FCharacterOnHitAbilityInfo
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FGameplayTag OnHitMessageTag = FGameplayTag();
+	
+};
+
 UENUM(BlueprintType)
 enum EOnHitDirection : uint8
 {
@@ -62,6 +82,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
 	TSubclassOf<UGameplayAbility> GA_Defense;
 
+	// 防御 Message Tag
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
+	FGameplayTag DefenseMessageTag = FGameplayTag();
+	
 	// 防御受击 Tag
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DefenseOnHit Properties")
 	FGameplayTag DefenseOnHitActiveTag = FGameplayTag();
@@ -70,6 +94,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DefenseOnHit Properties")
 	TSubclassOf<UGameplayAbility> GA_DefenseOnHit;
 
+	// 防御受击 Message Tag
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
+	FGameplayTag DefenseOnHitMessageTag = FGameplayTag();
+	
 	// Block Tag
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Block Properties")
 	FGameplayTag BlockActiveTag = FGameplayTag();
@@ -78,6 +106,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Block Properties")
 	TSubclassOf<UGameplayAbility> GA_Block;
 
+	// Block Message Tag
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
+	FGameplayTag BlockMessageTag = FGameplayTag();
+	
 	// HitDown Tag
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HitDown Properties")
 	FGameplayTag HitDownActiveTag = FGameplayTag();
@@ -86,4 +118,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HitDown Properties")
 	TSubclassOf<UGameplayAbility> GA_HitDown;
 
+	// HitDown Message Tag
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
+	FGameplayTag HitDownMessageTag = FGameplayTag();
+	
 };

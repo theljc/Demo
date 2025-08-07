@@ -81,7 +81,7 @@ enum EPlayerAttackType : uint8
 };
 
 USTRUCT(BlueprintType)
-struct FPlayerAttackAbilityInfo
+struct FPlayerAttackAbilityInfo : public FCharacterAttackAbilityInfo
 {
 	GENERATED_BODY()
 
@@ -140,7 +140,7 @@ enum EPlayerOnHitType : uint8
 };
 
 USTRUCT(BlueprintType)
-struct FPlayerOnHitAbilityInfo
+struct FPlayerOnHitAbilityInfo : public FCharacterOnHitAbilityInfo
 {
 	GENERATED_BODY()
 

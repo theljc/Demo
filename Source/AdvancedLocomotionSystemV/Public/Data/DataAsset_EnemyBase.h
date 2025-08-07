@@ -46,14 +46,14 @@ enum EEnemyMovementState : uint8
 };
 
 USTRUCT(BlueprintType)
-struct FEnemyAttackAbilityInfoBase
+struct FEnemyAttackAbilityInfoBase : public FCharacterAttackAbilityInfo
 {
 	GENERATED_BODY()
 	
 };
 
 USTRUCT(BlueprintType)
-struct FEnemyOnHitAbilityInfoBase
+struct FEnemyOnHitAbilityInfoBase : public FCharacterOnHitAbilityInfo
 {
 	GENERATED_BODY()
 	
