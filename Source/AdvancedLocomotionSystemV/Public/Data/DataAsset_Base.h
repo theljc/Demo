@@ -34,9 +34,6 @@ struct FCharacterOnHitAbilityInfo
 {
 	GENERATED_BODY()
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	FGameplayTag OnHitMessageTag = FGameplayTag();
-	
 };
 
 UENUM(BlueprintType)
@@ -74,6 +71,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="OnHit Properties")
 	TSubclassOf<UGameplayAbility> GA_OnHit;
 
+	// 受击 Message Tag
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="OnHit Properties")
+	FGameplayTag OnHitMessageTag = FGameplayTag();
+
 	// 防御 Tag
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
 	FGameplayTag DefenseActiveTag = FGameplayTag();
@@ -95,7 +96,7 @@ public:
 	TSubclassOf<UGameplayAbility> GA_DefenseOnHit;
 
 	// 防御受击 Message Tag
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DefenseOnHit Properties")
 	FGameplayTag DefenseOnHitMessageTag = FGameplayTag();
 	
 	// Block Tag
@@ -107,7 +108,7 @@ public:
 	TSubclassOf<UGameplayAbility> GA_Block;
 
 	// Block Message Tag
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Block Properties")
 	FGameplayTag BlockMessageTag = FGameplayTag();
 	
 	// HitDown Tag
@@ -119,7 +120,7 @@ public:
 	TSubclassOf<UGameplayAbility> GA_HitDown;
 
 	// HitDown Message Tag
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Defense Properties")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HitDown Properties")
 	FGameplayTag HitDownMessageTag = FGameplayTag();
 	
 };
