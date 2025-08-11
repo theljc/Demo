@@ -60,6 +60,14 @@ struct FEnemyOnHitAbilityInfoBase : public FCharacterOnHitAbilityInfo
 	
 };
 
+USTRUCT(BlueprintType)
+struct FEnemyBlockAbilityInfoBase : public FCharacterBlockAbilityInfo
+{
+	GENERATED_BODY()
+	
+	
+};
+
 /**
  * 
  */

@@ -19,6 +19,17 @@ struct FTableRow_CharacterBase : public FTableRowBase
 	
 };
 
+UENUM(BlueprintType)
+enum EOnHitDirection : uint8
+{
+	OHD_None UMETA(DisplayName = "None"),
+
+	OHD_Front UMETA(DisplayName = "Front"),
+	OHD_Back UMETA(DisplayName = "Back"),
+	OHD_Left UMETA(DisplayName = "Left"),
+	OHD_Right UMETA(DisplayName = "Right"),
+};
+
 USTRUCT(BlueprintType)
 struct FCharacterAttackAbilityInfo
 {
@@ -36,15 +47,19 @@ struct FCharacterOnHitAbilityInfo
 	
 };
 
-UENUM(BlueprintType)
-enum EOnHitDirection : uint8
+USTRUCT(BlueprintType)
+struct FCharacterBlockAbilityInfo
 {
-	OHD_None UMETA(DisplayName = "None"),
-
-	OHD_Front UMETA(DisplayName = "Front"),
-	OHD_Back UMETA(DisplayName = "Back"),
-	OHD_Left UMETA(DisplayName = "Left"),
-	OHD_Right UMETA(DisplayName = "Right"),
+	GENERATED_BODY()
+	
+	// Block 方向
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TEnumAsByte<EOnHitDirection> BlockDirection;
+	
+	// Block 动画
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TObjectPtr<UAnimMontage> BlockMontage;
+	
 };
 
 

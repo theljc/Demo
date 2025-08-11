@@ -162,6 +162,13 @@ struct FPlayerOnHitAbilityInfo : public FCharacterOnHitAbilityInfo
 	
 };
 
+USTRUCT(BlueprintType)
+struct FPlayerBlockAbilityInfo : public FCharacterBlockAbilityInfo
+{
+	GENERATED_BODY()
+	
+};
+
 // 玩家闪避时的方向，直接在蓝图中配置
 UENUM(BlueprintType)
 enum EPlayerDodgeDirection : uint8
@@ -245,7 +252,7 @@ public:
 
 	// Block 动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Block Properties")
-	TObjectPtr<UAnimMontage> BlockMontage;
+	TArray<FPlayerBlockAbilityInfo> BlockAbilityInfo;
 	
 	// HitDown 动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HitDown Properties")

@@ -133,6 +133,14 @@ struct FBossOnHitAbilityInfo : public FEnemyOnHitAbilityInfoBase
 	
 };
 
+// USTRUCT(BlueprintType)
+// struct FBossBlockAbilityInfo : public FEnemyBlockAbilityInfoBase
+// {
+// 	GENERATED_BODY()
+// 	
+// };
+
+
 /**
  * 
  */
