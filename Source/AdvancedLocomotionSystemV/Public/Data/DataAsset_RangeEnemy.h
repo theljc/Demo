@@ -40,8 +40,8 @@ enum ERangeEnemySenseState : uint8
 {
 	ERESS_None UMETA(DisplayName = "None"),
 	
-	ERESS_MeleeRange UMETA(DisplayName = "MeleeRange"),
-	ERESS_RemoteRange UMETA(DisplayName = "RemoteRange"),
+	ERESS_Attack UMETA(DisplayName = "Attack"),
+	ERESS_Investigate UMETA(DisplayName = "Investigate"),
 	ERESS_Pursuit UMETA(DisplayName = "Pursuit"),
 	ERESS_Patrol UMETA(DisplayName = "Patrol"),
 

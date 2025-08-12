@@ -45,8 +45,8 @@ enum EBossSenseState : uint8
 {
 	EBSS_None UMETA(DisplayName = "None"),
 	
-	EBSS_MeleeRange UMETA(DisplayName = "MeleeRange"),
-	EBSS_RemoteRange UMETA(DisplayName = "RemoteRange"),
+	EBSS_MeleeAttackRange UMETA(DisplayName = "MeleeAttackRange"),
+	EBSS_RemoteAttackRange UMETA(DisplayName = "RemoteAttackRange"),
 	EBSS_Pursuit UMETA(DisplayName = "Pursuit"),
 	EBSS_Patrol UMETA(DisplayName = "Patrol"),
 

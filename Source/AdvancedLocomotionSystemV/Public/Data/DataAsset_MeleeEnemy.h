@@ -43,8 +43,8 @@ enum EMeleeEnemySenseState : uint8
 {
 	EMESS_None UMETA(DisplayName = "None"),
 	
-	EMESS_MeleeRange UMETA(DisplayName = "MeleeRange"),
-	EMESS_RemoteRange UMETA(DisplayName = "RemoteRange"),
+	EMESS_Attack UMETA(DisplayName = "Attack"),
+	EMESS_Investigate UMETA(DisplayName = "Investigate"),
 	EMESS_Pursuit UMETA(DisplayName = "Pursuit"),
 	EMESS_Patrol UMETA(DisplayName = "Patrol"),
 
