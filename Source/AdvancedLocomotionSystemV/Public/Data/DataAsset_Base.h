@@ -137,5 +137,14 @@ public:
 	// HitDown Message Tag
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HitDown Properties")
 	FGameplayTag HitDownMessageTag = FGameplayTag();
+
+public:
+	// 除了攻击 Tag 之外的其它 Tags
+	UFUNCTION(BlueprintPure)
+	virtual FGameplayTagContainer GetAllOtherActiveTags();
+	
+	// 所有攻击 Tag
+	UFUNCTION(BlueprintPure)
+	virtual FGameplayTagContainer GetAllAttackActiveTags();
 	
 };

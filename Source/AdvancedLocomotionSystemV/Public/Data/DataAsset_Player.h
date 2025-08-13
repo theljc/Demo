@@ -42,18 +42,22 @@ enum EPlayerStateEnum : uint8
 	
 	// 待机状态
 	EPS_Idle UMETA(DisplayName = "Idle"),
-	// 移动状态
-	EPS_Move UMETA(DisplayName = "Move"),
-	// 攻击状态
-	EPS_Attack UMETA(DisplayName = "Attack"),
-	// 防御状态
-	EPS_Defense UMETA(DisplayName = "Defense"),
-	// 防御受击状态
-	EPS_DefenseOnHit UMETA(DisplayName = "Defense OnHit"),
-	// 受击状态
-	EPS_OnHit UMETA(DisplayName = "OnHit"),
-	// 被打断
-	EPS_Blocked UMETA(DisplayName = "Blocked"),
+	// // 移动状态
+	// EPS_Move UMETA(DisplayName = "Move"),
+	
+	// // 攻击状态
+	// EPS_Attack UMETA(DisplayName = "Attack"),
+	// // 防御状态
+	// EPS_Defense UMETA(DisplayName = "Defense"),
+	// // 防御受击状态
+	// EPS_DefenseOnHit UMETA(DisplayName = "Defense OnHit"),
+	// // 受击状态
+	// EPS_OnHit UMETA(DisplayName = "OnHit"),
+	// // 被打断
+	// EPS_Blocked UMETA(DisplayName = "Blocked"),
+
+	// 表示玩家正在切换持刀和非持刀状态
+	EPS_ChangeState UMETA(DisplayName = "Change State"),
 	// 处决状态
 	EPS_Execution UMETA(DisplayName="Execution"),
 	//  附身状态
@@ -258,6 +262,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HitDown Properties")
 	TObjectPtr<UAnimMontage> HitDownMontage;
 
+	// 闪避
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Dodge Properties")
 	FGameplayTag DodgeActiveTag = FGameplayTag();
 	
@@ -266,5 +271,22 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Dodge Properties")
 	TSubclassOf<UGameplayAbility> GA_Dodge;
+
+	// 弹反
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Parry Properties")
+	FGameplayTag ParryActiveTag = FGameplayTag();
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Parry Properties")
+	TObjectPtr<UAnimMontage> ParryMontage;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Parry Properties")
+	TSubclassOf<UGameplayAbility> GA_Parry;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Parry Properties")
+	FGameplayTag ParryMessageTag = FGameplayTag();
+	
+public:
+	virtual FGameplayTagContainer GetAllOtherActiveTags() override;
+	virtual FGameplayTagContainer GetAllAttackActiveTags() override;
 	
 };

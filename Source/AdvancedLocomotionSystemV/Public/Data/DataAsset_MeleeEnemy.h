@@ -131,6 +131,13 @@ struct FMeleeEnemyOnHitAbilityInfo : public FEnemyOnHitAbilityInfoBase
 	
 };
 
+USTRUCT(BlueprintType)
+struct FMeleeEnemyBlockAbilityInfo : public FCharacterBlockAbilityInfo
+{
+	GENERATED_BODY()
+	
+};
+
 /**
  * 
  */
@@ -168,10 +175,14 @@ public:
 
 	// Block 动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Block Properties")
-	TObjectPtr<UAnimMontage> BlockMontage;
+	TArray<FMeleeEnemyBlockAbilityInfo> BlockAbilityInfo;
 
 	// HitDown 动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HitDown Properties")
 	TObjectPtr<UAnimMontage> HitDownMontage;
+	
+public:
+	virtual FGameplayTagContainer GetAllOtherActiveTags() override;
+	virtual FGameplayTagContainer GetAllAttackActiveTags() override;
 	
 };

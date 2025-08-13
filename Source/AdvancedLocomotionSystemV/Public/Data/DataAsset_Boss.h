@@ -193,5 +193,9 @@ public:
 	// HitDown 动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HitDown Properties")
 	TObjectPtr<UAnimMontage> HitDownMontage;
+
+public:
+	virtual FGameplayTagContainer GetAllOtherActiveTags() override;
+	virtual FGameplayTagContainer GetAllAttackActiveTags() override;
 	
 };
