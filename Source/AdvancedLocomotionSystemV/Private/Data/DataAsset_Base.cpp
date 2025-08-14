@@ -12,3 +12,13 @@ FGameplayTagContainer UDataAsset_Base::GetAllAttackActiveTags()
 {
 	return FGameplayTagContainer();
 }
+
+TArray<TSubclassOf<UGameplayAbility>> UDataAsset_Base::GetAllAttackAbilities()
+{
+	return TArray<TSubclassOf<UGameplayAbility>>();
+}
+
+TArray<TSubclassOf<UGameplayAbility>> UDataAsset_Base::GetAllOtherAbilities()
+{
+	return TArray<TSubclassOf<UGameplayAbility>>();
+}

@@ -36,3 +36,28 @@ FGameplayTagContainer UDataAsset_Player::GetAllAttackActiveTags()
 	
 	return AllAttackActiveTags.CreateFromArray(Tags);
 }
+
+TArray<TSubclassOf<UGameplayAbility>> UDataAsset_Player::GetAllAttackAbilities()
+{
+	TArray<TSubclassOf<UGameplayAbility>> AllAttackAbilities;
+	for (FPlayerAttackAbilityInfo AttackInfo : AttackAbilityInfo)
+	{
+		AllAttackAbilities.Add(AttackInfo.AttackGA);
+	}
+
+	return AllAttackAbilities;
+}
+
+TArray<TSubclassOf<UGameplayAbility>> UDataAsset_Player::GetAllOtherAbilities()
+{
+	TArray<TSubclassOf<UGameplayAbility>> AllAttackAbilities;
+	AllAttackAbilities.Add(GA_OnHit);
+	AllAttackAbilities.Add(GA_Defense);
+	AllAttackAbilities.Add(GA_DefenseOnHit);
+	AllAttackAbilities.Add(GA_Block);
+	AllAttackAbilities.Add(GA_HitDown);
+	AllAttackAbilities.Add(GA_Dodge);
+	AllAttackAbilities.Add(GA_Parry);
+	
+	return AllAttackAbilities;
+}

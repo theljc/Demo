@@ -197,5 +197,7 @@ public:
 public:
 	virtual FGameplayTagContainer GetAllOtherActiveTags() override;
 	virtual FGameplayTagContainer GetAllAttackActiveTags() override;
+	virtual TArray<TSubclassOf<UGameplayAbility>> GetAllAttackAbilities() override;
+	virtual TArray<TSubclassOf<UGameplayAbility>> GetAllOtherAbilities() override;
 	
 };

@@ -4,6 +4,7 @@
 #include "AbilitySystemInterface.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystem/AttributeSet/AttributeSetBase.h"
+#include "Interface/Interface_Character.h"
 // #include "AbilitySystemInterface.h"
 #include "CharacterBase_GAS.generated.h"
 
@@ -21,7 +22,7 @@ struct FMyTargetData : public FGameplayAbilityTargetData
 
 
 UCLASS()
-class ADVANCEDLOCOMOTIONSYSTEMV_API ACharacterBase_GAS : public ACharacter, public IAbilitySystemInterface
+class ADVANCEDLOCOMOTIONSYSTEMV_API ACharacterBase_GAS : public ACharacter, public IAbilitySystemInterface, public IInterface_Character
 {
 	GENERATED_BODY()
 

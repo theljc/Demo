@@ -34,3 +34,26 @@ FGameplayTagContainer UDataAsset_MeleeEnemy::GetAllAttackActiveTags()
 	
 	return AllAttackActiveTags.CreateFromArray(Tags);
 }
+
+TArray<TSubclassOf<UGameplayAbility>> UDataAsset_MeleeEnemy::GetAllAttackAbilities()
+{
+	TArray<TSubclassOf<UGameplayAbility>> AllAttackAbilities;
+	for (FMeleeEnemyAttackAbilityInfo AttackInfo : AttackAbilityInfo)
+	{
+		AllAttackAbilities.Add(AttackInfo.AttackGA);
+	}
+
+	return AllAttackAbilities;
+}
+
+TArray<TSubclassOf<UGameplayAbility>> UDataAsset_MeleeEnemy::GetAllOtherAbilities()
+{
+	TArray<TSubclassOf<UGameplayAbility>> AllAttackAbilities;
+	AllAttackAbilities.Add(GA_OnHit);
+	AllAttackAbilities.Add(GA_Defense);
+	AllAttackAbilities.Add(GA_DefenseOnHit);
+	AllAttackAbilities.Add(GA_Block);
+	AllAttackAbilities.Add(GA_HitDown);
+	
+	return AllAttackAbilities;
+}

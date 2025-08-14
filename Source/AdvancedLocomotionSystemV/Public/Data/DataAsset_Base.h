@@ -146,5 +146,13 @@ public:
 	// 所有攻击 Tag
 	UFUNCTION(BlueprintPure)
 	virtual FGameplayTagContainer GetAllAttackActiveTags();
+
+	// 所有攻击 GA
+	UFUNCTION(BlueprintPure)
+	virtual TArray<TSubclassOf<UGameplayAbility>> GetAllAttackAbilities();
+
+	// 除攻击外的 GA
+	UFUNCTION(BlueprintPure)
+	virtual TArray<TSubclassOf<UGameplayAbility>> GetAllOtherAbilities();
 	
 };
