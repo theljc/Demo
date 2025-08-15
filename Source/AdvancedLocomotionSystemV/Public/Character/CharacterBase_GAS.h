@@ -31,7 +31,6 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	bool GetCooldownRemainingForTag(FGameplayTagContainer CooldownTags, float& TimeRemaining, float& CooldownDuration);
-
 	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 

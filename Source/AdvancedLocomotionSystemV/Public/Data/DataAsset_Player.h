@@ -62,6 +62,8 @@ enum EPlayerStateEnum : uint8
 	EPS_Execution UMETA(DisplayName="Execution"),
 	//  附身状态
 	EPS_Possession UMETA(DisplayName="Possession"),
+	//  闪避状态
+	EPS_Dodge UMETA(DisplayName="Dodge"),
 	// 死亡状态
 	EPS_Dead UMETA(DisplayName = "Dead"), 
 	
