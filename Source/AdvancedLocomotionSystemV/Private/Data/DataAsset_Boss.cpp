@@ -27,7 +27,12 @@ FGameplayTagContainer UDataAsset_Boss::GetAllAttackActiveTags()
 	FGameplayTagContainer AllAttackActiveTags;
 	TArray<FGameplayTag> Tags;
 	
-	for (FBossAttackAbilityInfo AttackInfo : AttackAbilityInfo)
+	for (FBossAttackAbilityInfo AttackInfo : RangeAttackAbilityInfo)
+	{
+		Tags.Add(AttackInfo.AttackActiveTag);
+	}
+	
+	for (FBossAttackAbilityInfo AttackInfo : MeleeAttackAbilityInfo)
 	{
 		Tags.Add(AttackInfo.AttackActiveTag);
 	}
@@ -38,7 +43,12 @@ FGameplayTagContainer UDataAsset_Boss::GetAllAttackActiveTags()
 TArray<TSubclassOf<UGameplayAbility>> UDataAsset_Boss::GetAllAttackAbilities()
 {
 	TArray<TSubclassOf<UGameplayAbility>> AllAttackAbilities;
-	for (FBossAttackAbilityInfo AttackInfo : AttackAbilityInfo)
+	for (FBossAttackAbilityInfo AttackInfo : RangeAttackAbilityInfo)
+	{
+		AllAttackAbilities.Add(AttackInfo.AttackGA);
+	}
+
+	for (FBossAttackAbilityInfo AttackInfo : MeleeAttackAbilityInfo)
 	{
 		AllAttackAbilities.Add(AttackInfo.AttackGA);
 	}

@@ -76,5 +76,7 @@ class ADVANCEDLOCOMOTIONSYSTEMV_API UDataAsset_EnemyBase : public UDataAsset_Bas
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Dead Properties")
+	TObjectPtr<UAnimMontage> DeadMontage;
 	
 };

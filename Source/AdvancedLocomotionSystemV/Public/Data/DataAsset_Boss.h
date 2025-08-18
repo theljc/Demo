@@ -170,9 +170,13 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
 	TEnumAsByte<EBossSenseState> BossSenseState;
 
-	// 攻击技能，数组保存多种攻击技能
+	// 远程攻击技能，数组保存多种攻击技能
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Attack Properties")
-	TArray<FBossAttackAbilityInfo> AttackAbilityInfo;
+	TArray<FBossAttackAbilityInfo> RangeAttackAbilityInfo;
+
+	// 近战攻击技能，数组保存多种攻击技能
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Attack Properties")
+	TArray<FBossAttackAbilityInfo> MeleeAttackAbilityInfo;
 
 	// 受击信息
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="OnHit Properties")

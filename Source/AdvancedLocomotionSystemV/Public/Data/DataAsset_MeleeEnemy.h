@@ -142,7 +142,7 @@ struct FMeleeEnemyBlockAbilityInfo : public FCharacterBlockAbilityInfo
  * 
  */
 UCLASS(BlueprintType, Blueprintable)
-class ADVANCEDLOCOMOTIONSYSTEMV_API UDataAsset_MeleeEnemy : public UDataAsset_Base
+class ADVANCEDLOCOMOTIONSYSTEMV_API UDataAsset_MeleeEnemy : public UDataAsset_EnemyBase
 {
 	GENERATED_BODY()
 public:
