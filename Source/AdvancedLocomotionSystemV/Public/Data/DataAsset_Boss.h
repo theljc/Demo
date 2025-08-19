@@ -52,19 +52,19 @@ enum EBossSenseState : uint8
 
 };
 
-UENUM(Blueprintable, BlueprintType)
-enum EBossAttackType : uint8
-{
-	EBAT_None UMETA(DisplayName = "None"),
-	// 每次攻击会有攻击类型，根据这个类型判断玩家的受击动画
-	EBAT_MeleeAttack UMETA(DisplayName = "Melee Attack"),
-	EBAT_MeleeAttack_Block UMETA(DisplayName = "Melee Attack Block"),
-	EBAT_MeleeAttack_HitDown UMETA(DisplayName = "Melee Attack HitDown"),
-	EBAT_RangedAttack UMETA(DisplayName = "Ranged Attack"),
-	EBAT_RangedAttack_Block UMETA(DisplayName = "Ranged Attack Block"),
-	EBAT_RangedAttack_HitDown UMETA(DisplayName = "Ranged Attack HitDown"),
-	
-};
+// UENUM(Blueprintable, BlueprintType)
+// enum EBossAttackType : uint8
+// {
+// 	EBAT_None UMETA(DisplayName = "None"),
+// 	// 每次攻击会有攻击类型，根据这个类型判断玩家的受击动画
+// 	EBAT_MeleeAttack UMETA(DisplayName = "Melee Attack"),
+// 	EBAT_MeleeAttack_Block UMETA(DisplayName = "Melee Attack Block"),
+// 	EBAT_MeleeAttack_HitDown UMETA(DisplayName = "Melee Attack HitDown"),
+// 	EBAT_RangedAttack UMETA(DisplayName = "Ranged Attack"),
+// 	EBAT_RangedAttack_Block UMETA(DisplayName = "Ranged Attack Block"),
+// 	EBAT_RangedAttack_HitDown UMETA(DisplayName = "Ranged Attack HitDown"),
+// 	
+// };
 
 UENUM(Blueprintable, BlueprintType)
 enum EBossOnHitType : uint8
@@ -102,7 +102,7 @@ struct FBossAttackAbilityInfo : public FEnemyAttackAbilityInfoBase
 	TObjectPtr<UAnimMontage> AttackMontages;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TEnumAsByte<EBossAttackType> AttackType = EBossAttackType::EBAT_None;
+	TEnumAsByte<EEnemyAttackType> AttackType = EEAT_None;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSubclassOf<UGameplayAbility> AttackGA;

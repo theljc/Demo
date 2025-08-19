@@ -45,6 +45,18 @@ enum EEnemyMovementState : uint8
 	
 };
 
+// 敌人的攻击类型
+UENUM(BlueprintType)
+enum EEnemyAttackType : uint8
+{
+	EEAT_None UMETA(DisplayName = "None"),
+	
+	EEAT_Normal UMETA(DisplayName = "Normal"),
+	EEAT_Block UMETA(DisplayName = "Block"),
+	EEAT_HitDown UMETA(DisplayName = "HitDown"),
+	
+};
+
 USTRUCT(BlueprintType)
 struct FEnemyAttackAbilityInfoBase : public FCharacterAttackAbilityInfo
 {

@@ -45,16 +45,16 @@ enum EPlayerStateEnum : uint8
 	// // 移动状态
 	// EPS_Move UMETA(DisplayName = "Move"),
 	
-	// // 攻击状态
-	// EPS_Attack UMETA(DisplayName = "Attack"),
-	// // 防御状态
-	// EPS_Defense UMETA(DisplayName = "Defense"),
-	// // 防御受击状态
-	// EPS_DefenseOnHit UMETA(DisplayName = "Defense OnHit"),
-	// // 受击状态
-	// EPS_OnHit UMETA(DisplayName = "OnHit"),
-	// // 被打断
-	// EPS_Blocked UMETA(DisplayName = "Blocked"),
+	// 攻击状态
+	EPS_Attack UMETA(DisplayName = "Attack"),
+	// 防御状态
+	EPS_Defense UMETA(DisplayName = "Defense"),
+	// 防御受击状态
+	EPS_DefenseOnHit UMETA(DisplayName = "Defense OnHit"),
+	// 受击状态
+	EPS_OnHit UMETA(DisplayName = "OnHit"),
+	// 被打断
+	EPS_Blocked UMETA(DisplayName = "Blocked"),
 
 	// 表示玩家正在切换持刀和非持刀状态
 	EPS_ChangeState UMETA(DisplayName = "Change State"),
@@ -75,14 +75,9 @@ enum EPlayerAttackType : uint8
 {
 	EPAT_None UMETA(DisplayName = "None"),
 	
-	EPAT_MeleeAttack UMETA(DisplayName = "Melee Attack"),
-	EPAT_MeleeAttack_Block UMETA(DisplayName = "Melee Attack Block"),
-	EPAT_MeleeAttack_HitDown UMETA(DisplayName = "Melee Attack HitDown"),
-
-	// 玩家的远程攻击类型（未使用）
-	EPAT_RangedAttack UMETA(DisplayName = "Ranged Attack"),
-	EPAT_RangedAttack_Block UMETA(DisplayName = "Ranged Attack Block"),
-	EPAT_RangedAttack_HitDown UMETA(DisplayName = "Ranged Attack HitDown"),
+	EPAT_Normal UMETA(DisplayName = "Normal"),
+	EPAT_Block UMETA(DisplayName = "Block"),
+	EPAT_HitDown UMETA(DisplayName = "HitDown"),
 	
 };
 
@@ -286,6 +281,19 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Parry Properties")
 	FGameplayTag ParryMessageTag = FGameplayTag();
+
+	// 受到重击
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HeavyHit Properties")
+	FGameplayTag HeavyHitActiveTag = FGameplayTag();
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HeavyHit Properties")
+	TObjectPtr<UAnimMontage> HeavyHitMontage;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HeavyHit Properties")
+	TSubclassOf<UGameplayAbility> GA_HeavyHit;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HeavyHit Properties")
+	FGameplayTag HeavyHitMessageTag = FGameplayTag();
 	
 public:
 	virtual FGameplayTagContainer GetAllOtherActiveTags() override;
