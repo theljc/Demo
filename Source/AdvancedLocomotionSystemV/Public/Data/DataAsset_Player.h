@@ -254,10 +254,6 @@ public:
 	// Block 动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Block Properties")
 	TArray<FPlayerBlockAbilityInfo> BlockAbilityInfo;
-	
-	// HitDown 动画
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HitDown Properties")
-	TObjectPtr<UAnimMontage> HitDownMontage;
 
 	// 闪避
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Dodge Properties")
@@ -281,20 +277,10 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Parry Properties")
 	FGameplayTag ParryMessageTag = FGameplayTag();
-
-	// 受到重击
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HeavyHit Properties")
-	FGameplayTag HeavyHitActiveTag = FGameplayTag();
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HeavyHit Properties")
-	TObjectPtr<UAnimMontage> HeavyHitMontage;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HitDown Properties")
+	TObjectPtr<UAnimMontage> HitDownMontage;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HeavyHit Properties")
-	TSubclassOf<UGameplayAbility> GA_HeavyHit;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HeavyHit Properties")
-	FGameplayTag HeavyHitMessageTag = FGameplayTag();
-	
 public:
 	virtual FGameplayTagContainer GetAllOtherActiveTags() override;
 	virtual FGameplayTagContainer GetAllAttackActiveTags() override;
