@@ -110,6 +110,10 @@ struct FBossAttackAbilityInfo : public FEnemyAttackAbilityInfoBase
 	// 攻击命中后施加伤害的 GE
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSubclassOf<UGameplayEffect> GE_ApplyDamage;
+
+	// 攻击命中后削韧的 GE
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TSubclassOf<UGameplayEffect> GE_ApplyWeakeningResilience;
 	
 };
 

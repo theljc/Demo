@@ -36,15 +36,15 @@ void UAttributeSetBase::PostGameplayEffectExecute(const FGameplayEffectModCallba
 {
 	Super::PostGameplayEffectExecute(Data);
 
-	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
-	{
-		SetHealth(FMath::Clamp(GetHealth(), 0, GetMaxHealth()));
-	}
-
-	if (Data.EvaluatedData.Attribute == GetResilienceAttribute())
-	{
-		SetResilience(FMath::Clamp(GetResilience(), 0, GetMaxResilience()));
-	}
+	// if (Data.EvaluatedData.Attribute == GetHealthAttribute())
+	// {
+	// 	SetHealth(FMath::Clamp(GetHealth(), 0, GetMaxHealth()));
+	// }
+	
+	// if (Data.EvaluatedData.Attribute == GetResilienceAttribute())
+	// {
+	// 	SetResilience(FMath::Clamp(GetResilience(), 0, GetMaxResilience()));
+	// }
 
 	
 }
