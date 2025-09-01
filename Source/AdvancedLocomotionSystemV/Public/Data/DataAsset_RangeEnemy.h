@@ -83,15 +83,15 @@ struct FRangeEnemyAttackAbilityInfo : public FEnemyAttackAbilityInfoBase
 
 	// 伤害
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	float AttackDamage;
+	float AttackDamage = 0.f;
 
 	// 冷却
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	float CoolDown;
+	float CoolDown = 0.f;
 
 	// 削弱玩家的耐力值
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	float WeakeningEndurance;
+	float WeakeningEndurance = 0.f;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UAnimMontage> AttackMontages;
@@ -119,13 +119,13 @@ struct FRangeEnemyOnHitAbilityInfo : public FEnemyOnHitAbilityInfoBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TEnumAsByte<EEnemyOverlayState> RangeEnemyOverlayState;
+	TEnumAsByte<EEnemyOverlayState> RangeEnemyOverlayState = EEOS_None;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TEnumAsByte<ERangeEnemyOnHitType> OnHitType;
+	TEnumAsByte<ERangeEnemyOnHitType> OnHitType = EREOHT_None;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TEnumAsByte<EOnHitDirection> OnHitDirection;
+	TEnumAsByte<EOnHitDirection> OnHitDirection = OHD_None;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UAnimMontage> OnHitMontage;
@@ -152,11 +152,11 @@ public:
 	
 	// 战斗状态
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
-	TEnumAsByte<ERangeEnemyCombatState> RangeEnemyCombatState;
+	TEnumAsByte<ERangeEnemyCombatState> RangeEnemyCombatState = ERECS_None;
 
 	// 感知状态
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
-	TEnumAsByte<ERangeEnemySenseState> RangeEnemySenseState;
+	TEnumAsByte<ERangeEnemySenseState> RangeEnemySenseState = ERESS_None;
 
 	// 攻击技能，数组保存多种攻击技能
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Attack Properties")

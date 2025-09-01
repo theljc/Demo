@@ -88,15 +88,15 @@ struct FBossAttackAbilityInfo : public FEnemyAttackAbilityInfoBase
 
 	// 伤害
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	float AttackDamage;
+	float AttackDamage = 0.f;
 
 	// 冷却
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	float CoolDown;
+	float CoolDown = 0.f;
 
 	// 削弱玩家的耐力值
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	float WeakeningEndurance;
+	float WeakeningEndurance = 0.f;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UAnimMontage> AttackMontages;
@@ -124,13 +124,13 @@ struct FBossOnHitAbilityInfo : public FEnemyOnHitAbilityInfoBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TEnumAsByte<EEnemyOverlayState> BossOverlayState;
+	TEnumAsByte<EEnemyOverlayState> BossOverlayState = EEOS_None;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TEnumAsByte<EBossOnHitType> OnHitType;
+	TEnumAsByte<EBossOnHitType> OnHitType = EBOHT_None;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TEnumAsByte<EOnHitDirection> OnHitDirection;
+	TEnumAsByte<EOnHitDirection> OnHitDirection = OHD_None;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UAnimMontage> OnHitMontage;
@@ -157,10 +157,7 @@ public:
 	virtual UDataAsset_Boss* GetDataAsset_Boss_Implementation() override;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
-	float RestoreTime;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
-	float InitResilience;
+	float RestoreTime = 0.f;
 
 	// 从 Block 状态恢复后重置韧性值的 GE
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
@@ -168,11 +165,11 @@ public:
 	
 	// 战斗状态
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
-	TEnumAsByte<EBossCombatState> BossCombatState;
+	TEnumAsByte<EBossCombatState> BossCombatState = EBCS_None;
 
 	// 感知状态
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
-	TEnumAsByte<EBossSenseState> BossSenseState;
+	TEnumAsByte<EBossSenseState> BossSenseState = EBSS_None;
 
 	// 远程攻击技能，数组保存多种攻击技能
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Attack Properties")

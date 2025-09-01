@@ -55,6 +55,12 @@ enum EPlayerStateEnum : uint8
 	EPS_OnHit UMETA(DisplayName = "OnHit"),
 	// 被打断
 	EPS_Blocked UMETA(DisplayName = "Blocked"),
+	// 治疗状态
+	EPS_Healing UMETA(DisplayName = "Healing"),
+	// 韧性值为 0 时的破防状态
+	EPS_ResilienceBlock UMETA(DisplayName = "Resilience Block"), 
+	// 倒地状态
+	EPS_HitDown UMETA(DisplayName = "Hit Down"),
 
 	// 表示玩家正在切换持刀和非持刀状态
 	EPS_ChangeState UMETA(DisplayName = "Change State"),
@@ -92,15 +98,15 @@ struct FPlayerAttackAbilityInfo : public FCharacterAttackAbilityInfo
 
 	// 伤害
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	float AttackDamage;
+	float AttackDamage = 0.f;
 
 	// 冷却
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	float CoolDown;
+	float CoolDown = 0.f;
 
 	// 削韧值
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	float WeakeningResilience;
+	float WeakeningResilience = 0.f;
 
 	// 攻击动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
@@ -147,15 +153,15 @@ struct FPlayerOnHitAbilityInfo : public FCharacterOnHitAbilityInfo
 
 	// 玩家的覆盖状态
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TEnumAsByte<EPlayerOverlayState> PlayerOverlayState;
+	TEnumAsByte<EPlayerOverlayState> PlayerOverlayState = EPlayerOverlayState::EPOS_None;
 	
 	// 受击类型
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TEnumAsByte<EPlayerOnHitType> OnHitType;
+	TEnumAsByte<EPlayerOnHitType> OnHitType = EPlayerOnHitType::EPOHT_None;
 
 	// 受击方向
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TEnumAsByte<EOnHitDirection> OnHitDirection;
+	TEnumAsByte<EOnHitDirection> OnHitDirection = EOnHitDirection::OHD_None;
 	
 	// 受击动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
@@ -208,11 +214,11 @@ struct FPlayerDodgeAbilityInfo
 
 	// 移动状态
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TEnumAsByte<EPlayerMovementState> MovementState;
+	TEnumAsByte<EPlayerMovementState> MovementState = EPlayerMovementState::EPMS_None;
 	
 	// 闪避方向
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TEnumAsByte<EPlayerDodgeDirection> DodgeDirection;
+	TEnumAsByte<EPlayerDodgeDirection> DodgeDirection = EPlayerDodgeDirection::EPDD_None;
 
 	// 闪避动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
@@ -233,7 +239,7 @@ public:
 	
 	// 玩家战斗状态
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
-	TEnumAsByte<EPlayerStateEnum> PlayerCombatState;
+	TEnumAsByte<EPlayerStateEnum> PlayerCombatState = EPlayerStateEnum::EPS_None;
 
 	// 攻击技能，数组保存多种攻击技能
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Attack Properties")
@@ -277,10 +283,42 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Parry Properties")
 	FGameplayTag ParryMessageTag = FGameplayTag();
+
+	// 韧性值为 0 时的破防状态
+	// 硬直恢复时间
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="ResilienceBlock Properties")
+	float ResilienceBlockRestoreTime = 0.0f;
+
+	// 从硬直状态恢复时的 GE
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="ResilienceBlock Properties")
+	TSubclassOf<UGameplayEffect> GE_ResilienceBlockRestore;
 	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="ResilienceBlock Properties")
+	FGameplayTag ResilienceBlockActiveTag = FGameplayTag();
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="ResilienceBlock Properties")
+	TObjectPtr<UAnimMontage> ResilienceBlockMontage;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="ResilienceBlock Properties")
+	TSubclassOf<UGameplayAbility> GA_ResilienceBlock;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="ResilienceBlock Properties")
+	FGameplayTag ResilienceBlockMessageTag = FGameplayTag();
+
+	// 被击倒动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HitDown Properties")
 	TObjectPtr<UAnimMontage> HitDownMontage;
 
+	// 治疗
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Heal Properties")
+	FGameplayTag HealActiveTag = FGameplayTag();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Heal Properties")
+	TSubclassOf<UGameplayAbility> GA_Heal;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Heal Properties")
+	TObjectPtr<UAnimMontage> HealMontage;
+	
 public:
 	virtual FGameplayTagContainer GetAllOtherActiveTags() override;
 	virtual FGameplayTagContainer GetAllAttackActiveTags() override;

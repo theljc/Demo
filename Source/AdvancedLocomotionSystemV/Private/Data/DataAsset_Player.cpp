@@ -20,6 +20,8 @@ FGameplayTagContainer UDataAsset_Player::GetAllOtherActiveTags()
 	Tags.Add(HitDownActiveTag);
 	Tags.Add(DodgeActiveTag);
 	Tags.Add(ParryActiveTag);
+	Tags.Add(ResilienceBlockActiveTag);
+	Tags.Add(HealActiveTag);
 	
 	return AllOtherActiveTags.CreateFromArray(Tags);
 }
@@ -58,6 +60,8 @@ TArray<TSubclassOf<UGameplayAbility>> UDataAsset_Player::GetAllOtherAbilities()
 	AllAttackAbilities.Add(GA_HitDown);
 	AllAttackAbilities.Add(GA_Dodge);
 	AllAttackAbilities.Add(GA_Parry);
+	AllAttackAbilities.Add(GA_ResilienceBlock);
+	AllAttackAbilities.Add(GA_Heal);
 	
 	return AllAttackAbilities;
 }

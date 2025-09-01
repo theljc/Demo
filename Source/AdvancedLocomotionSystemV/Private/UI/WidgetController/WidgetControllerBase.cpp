@@ -22,7 +22,8 @@ void UWidgetControllerBase::BroadCastInitialValues()
 	const UAttributeSetBase* AuraAttributeSet = CastChecked<UAttributeSetBase>(AttributeSet);
 	OnHealthChanged.Broadcast(AuraAttributeSet->GetHealth());
 	OnMaxHealthChanged.Broadcast(AuraAttributeSet->GetMaxHealth());
-	
+	OnResilienceChanged.Broadcast(AuraAttributeSet->GetResilience());
+	OnMaxResilienceChanged.Broadcast(AuraAttributeSet->GetMaxResilience());
 }
 
 void UWidgetControllerBase::BindCallBacksDependencies()
@@ -36,7 +37,7 @@ void UWidgetControllerBase::BindCallBacksDependencies()
 	// 	OnPlayerLevelChanged.Broadcast(NewLevel);
 	// });
 	
-	// 绑定 lambda 回调函数在生命值变化的时候发出通知	
+	// 绑定 lambda 回调函数在属性值变化的时候发出通知
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSetBase->GetHealthAttribute()).AddLambda(
 		[this](const FOnAttributeChangeData& Data)
 		{
@@ -47,6 +48,18 @@ void UWidgetControllerBase::BindCallBacksDependencies()
 	[this](const FOnAttributeChangeData& Data)
 		{
 			OnMaxHealthChanged.Broadcast(Data.NewValue);
+		}
+	);
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSetBase->GetResilienceAttribute()).AddLambda(
+	[this](const FOnAttributeChangeData& Data)
+		{
+			OnResilienceChanged.Broadcast(Data.NewValue);
+		}
+	);
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSetBase->GetMaxResilienceAttribute()).AddLambda(
+	[this](const FOnAttributeChangeData& Data)
+		{
+			OnMaxResilienceChanged.Broadcast(Data.NewValue);
 		}
 	);
 	

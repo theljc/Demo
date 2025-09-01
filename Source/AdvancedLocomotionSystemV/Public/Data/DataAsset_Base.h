@@ -54,7 +54,7 @@ struct FCharacterBlockAbilityInfo
 	
 	// Block 方向
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TEnumAsByte<EOnHitDirection> BlockDirection;
+	TEnumAsByte<EOnHitDirection> BlockDirection = EOnHitDirection::OHD_None;
 	
 	// Block 动画
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
@@ -72,7 +72,10 @@ class ADVANCEDLOCOMOTIONSYSTEMV_API UDataAsset_Base : public UDataAsset, public 
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
-	float InitHealth;
+	float InitHealth = 0.f;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
+	float InitResilience = 0.f;
 	
 	// 初始化属性的 GE
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
