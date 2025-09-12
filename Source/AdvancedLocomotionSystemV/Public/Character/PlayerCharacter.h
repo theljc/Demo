@@ -57,6 +57,8 @@ public:
 	void Server_SetAcceleration(FVector NewAcceleration);
 	
 	// void SimProxiesTurn();
+	UFUNCTION(BlueprintCallable)
+	void Test_CallBPFunction();
 
 protected:
 	virtual void BeginPlay() override;

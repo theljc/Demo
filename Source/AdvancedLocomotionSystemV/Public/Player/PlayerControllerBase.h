@@ -21,6 +21,8 @@ public:
 	APlayerControllerBase();
 	virtual void PlayerTick(const float DeltaTime) override;
 
+	virtual void ClientSetHUD_Implementation(TSubclassOf<AHUD> NewHUDClass) override;
+	
 protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;

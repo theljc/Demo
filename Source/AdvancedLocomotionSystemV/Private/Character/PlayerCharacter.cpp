@@ -6,6 +6,8 @@
 #include "AbilitySystem/DemoAbilitySystemComponent.h"
 #include "AbilitySystem/DemoAbilitySystemLibrary.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/GameModeBase.h"
+#include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Net/UnrealNetwork.h"
 #include "Player/PlayerControllerBase.h"
@@ -109,6 +111,25 @@ void APlayerCharacter::Server_SetControllerRotation_Implementation(FRotator NewR
 void APlayerCharacter::Server_SetAcceleration_Implementation(FVector NewAcceleration)
 {
 	Acceleration_Replicate = NewAcceleration;
+}
+
+void APlayerCharacter::Test_CallBPFunction()
+{
+	UClass * BlueprintGenClass = LoadClass<AActor>(nullptr, TEXT("Blueprint'/Game/Demo/Test_InterpToMovement.Test_InterpToMovement_C'"));      //获取蓝图中的生成类
+	if (BlueprintGenClass)
+	{
+		UBlueprint* Blueprint = UBlueprint::GetBlueprintFromClass(BlueprintGenClass);
+		UObject* Instance = NewObject<UObject>(GetTransientPackage(),Blueprint->GeneratedClass);            //根据类来创建对象实例
+	
+		// UFunction* Func = Blueprint->GeneratedClass->FindFunctionByName("Pri");     // 在类反射数据中查找名称为[FuncName]的函数
+		// Instance->ProcessEvent(Func, nullptr);                                           // 调用蓝图中定义的函数
+	
+		FProperty* Prop = FindFProperty<FProperty>(Blueprint->GeneratedClass, "TestInt");// 在类反射数据中查找名称为[IntProp]的属性
+		int value = 0;
+		Prop->GetValue_InContainer(Instance,&value);        //获取属性
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::FromInt(value).Append("TTT"));
+	}
+	
 }
 
 void APlayerCharacter::BeginPlay()

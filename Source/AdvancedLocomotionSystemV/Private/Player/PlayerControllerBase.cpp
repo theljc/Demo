@@ -19,6 +19,12 @@ void APlayerControllerBase::PlayerTick(const float DeltaTime)
 	
 }
 
+void APlayerControllerBase::ClientSetHUD_Implementation(TSubclassOf<AHUD> NewHUDClass)
+{
+	Super::ClientSetHUD_Implementation(NewHUDClass);
+	
+}
+
 void APlayerControllerBase::BeginPlay()
 {
 	Super::BeginPlay();

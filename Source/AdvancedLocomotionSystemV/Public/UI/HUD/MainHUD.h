@@ -29,7 +29,7 @@ public:
 
 protected:
 	// 作为主 UI 显示在屏幕上
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<UMainUserWidget> MainWidget;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
