@@ -3,12 +3,14 @@
 
 #include "Character/PlayerCharacter.h"
 
+// #include "BlueprintEditorModule.h"
 #include "AbilitySystem/DemoAbilitySystemComponent.h"
-#include "AbilitySystem/DemoAbilitySystemLibrary.h"
+// #include "AbilitySystem/DemoAbilitySystemLibrary.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "GameFramework/GameModeBase.h"
-#include "Kismet/GameplayStatics.h"
+// #include "GameFramework/GameModeBase.h"
+// #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
+// #include "Kismet2/KismetEditorUtilities.h"
 #include "Net/UnrealNetwork.h"
 #include "Player/PlayerControllerBase.h"
 #include "Player/PlayerStateBase.h"
@@ -115,20 +117,63 @@ void APlayerCharacter::Server_SetAcceleration_Implementation(FVector NewAccelera
 
 void APlayerCharacter::Test_CallBPFunction()
 {
-	UClass * BlueprintGenClass = LoadClass<AActor>(nullptr, TEXT("Blueprint'/Game/Demo/Test_InterpToMovement.Test_InterpToMovement_C'"));      //获取蓝图中的生成类
-	if (BlueprintGenClass)
-	{
-		UBlueprint* Blueprint = UBlueprint::GetBlueprintFromClass(BlueprintGenClass);
-		UObject* Instance = NewObject<UObject>(GetTransientPackage(),Blueprint->GeneratedClass);            //根据类来创建对象实例
+	// UClass * BlueprintGenClass = LoadClass<AActor>(nullptr, TEXT("Blueprint'/Game/Demo/Test_InterpToMovement.Test_InterpToMovement_C'"));      //获取蓝图中的生成类
+	// if (BlueprintGenClass)
+	// {
+	// 	UBlueprint* Blueprint = UBlueprint::GetBlueprintFromClass(BlueprintGenClass);
+	// 	UObject* Instance = NewObject<UObject>(GetTransientPackage(),Blueprint->GeneratedClass);            //根据类来创建对象实例
+	//
+	// 	// UFunction* Func = Blueprint->GeneratedClass->FindFunctionByName("Pri");     // 在类反射数据中查找名称为[FuncName]的函数
+	// 	// Instance->ProcessEvent(Func, nullptr);                                           // 调用蓝图中定义的函数
+	//
+	// 	FProperty* Prop = FindFProperty<FProperty>(Blueprint->GeneratedClass, "TestInt");// 在类反射数据中查找名称为[IntProp]的属性
+	// 	int value = 0;
+	// 	Prop->GetValue_InContainer(Instance,&value);        //获取属性
+	// 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::FromInt(value).Append("TTT"));
+	// }
 	
-		// UFunction* Func = Blueprint->GeneratedClass->FindFunctionByName("Pri");     // 在类反射数据中查找名称为[FuncName]的函数
-		// Instance->ProcessEvent(Func, nullptr);                                           // 调用蓝图中定义的函数
-	
-		FProperty* Prop = FindFProperty<FProperty>(Blueprint->GeneratedClass, "TestInt");// 在类反射数据中查找名称为[IntProp]的属性
-		int value = 0;
-		Prop->GetValue_InContainer(Instance,&value);        //获取属性
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::FromInt(value).Append("TTT"));
-	}
+}
+
+void APlayerCharacter::Test_CreateBP()
+{
+	// UClass* ParentClass = NewObject<UClass>();      // 创建ParentClass
+	// ParentClass->SetSuperStruct(UObject::StaticClass()); // 设置父类
+	// // 设置类标识
+	// ParentClass->ClassFlags = CLASS_Abstract | CLASS_MatchedSerializers | CLASS_Native | CLASS_ReplicationDataIsSetUp | CLASS_RequiredAPI | CLASS_TokenStreamAssembled | CLASS_HasInstancedReference  | CLASS_Constructed;
+	//
+	// // 为Class添加事件函数
+	// UFunction* BPEvent = NewObject<UFunction>(ParentClass, "BlueprintEvent", RF_Public | RF_Transient);
+	// BPEvent->FunctionFlags = FUNC_Public | FUNC_Event | FUNC_BlueprintEvent;
+	// BPEvent->Bind();
+	// BPEvent->StaticLink(true);
+	//
+	// BPEvent->Next = ParentClass->Children;              //将函数添加到Parent的Field中
+	// ParentClass->Children = BPEvent;
+	// ParentClass->AddFunctionToFunctionMap(BPEvent, "BlueprintEvent");
+	//
+	// ParentClass->Bind();
+	// ParentClass->StaticLink(true);
+	// ParentClass->AssembleReferenceTokenStream(true);
+	//
+	// UBlueprint* NewBP = FKismetEditorUtilities::CreateBlueprint(                        //创建蓝图
+	// 	ParentClass,
+	// 	GetTransientPackage(),
+	// 	"NewBP",
+	// 	EBlueprintType::BPTYPE_Normal,
+	// 	UBlueprint::StaticClass(),
+	// 	UBlueprintGeneratedClass::StaticClass());
+	//
+	// int32 NodePositionY = 0;
+	//
+	// //在图表中创建事件节点
+	// FKismetEditorUtilities::AddDefaultEventNode(NewBP, NewBP->UbergraphPages[0], "BlueprintEvent", ParentClass, NodePositionY); 
+	//
+	// //当事件不存在时会创建自定义事件
+	// FKismetEditorUtilities::AddDefaultEventNode(NewBP, NewBP->UbergraphPages[0], "CustomEvent", ParentClass, NodePositionY);    
+	//
+	// //打开蓝图编辑器
+	// FBlueprintEditorModule& BlueprintEditorModule = FModuleManager::LoadModuleChecked<FBlueprintEditorModule>("Kismet");
+	// BlueprintEditorModule.CreateBlueprintEditor(EToolkitMode::Standalone, nullptr, NewBP);
 	
 }
 

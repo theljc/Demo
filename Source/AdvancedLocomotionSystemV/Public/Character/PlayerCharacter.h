@@ -55,10 +55,14 @@ public:
 
 	UFUNCTION(Server, Reliable)
 	void Server_SetAcceleration(FVector NewAcceleration);
-	
-	// void SimProxiesTurn();
+
+	// 调用蓝图中的函数
 	UFUNCTION(BlueprintCallable)
 	void Test_CallBPFunction();
+
+	// 创建蓝图图表
+	UFUNCTION(BlueprintCallable)
+	void Test_CreateBP();
 
 protected:
 	virtual void BeginPlay() override;
