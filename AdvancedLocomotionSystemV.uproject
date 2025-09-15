@@ -8,6 +8,11 @@
 			"Name": "AdvancedLocomotionSystemV",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "EditorValidDataCheckEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
 		}
 	],
 	"Plugins": [

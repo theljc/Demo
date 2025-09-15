@@ -71,7 +71,12 @@ class ADVANCEDLOCOMOTIONSYSTEMV_API UDataAsset_Base : public UDataAsset, public 
 {
 	GENERATED_BODY()
 public:
+	
+#if WITH_EDITOR
+	
 	virtual EDataValidationResult IsDataValid(class FDataValidationContext& Context) const override;
+	
+#endif // WITH_EDITOR
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Default Properties")
 	float InitHealth = 0.f;

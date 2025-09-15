@@ -5,6 +5,8 @@
 
 #include "Misc/DataValidation.h"
 
+#if WITH_EDITOR
+
 EDataValidationResult UDataAsset_Base::IsDataValid(class FDataValidationContext& Context) const
 {
 	if (InitHealth < 0.f)
@@ -21,6 +23,8 @@ EDataValidationResult UDataAsset_Base::IsDataValid(class FDataValidationContext&
 	
 	return EDataValidationResult::Valid;
 }
+
+#endif // WITH_EDITOR
 
 FGameplayTagContainer UDataAsset_Base::GetAllOtherActiveTags()
 {

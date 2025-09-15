@@ -11,5 +11,11 @@ public class AdvancedLocomotionSystemVEditorTarget : TargetRules
 		DefaultBuildSettings = BuildSettingsVersion.Latest;
 
 		ExtraModuleNames.AddRange( new string[] { "AdvancedLocomotionSystemV" } );
+		RegisterModulesCreatedByRider();
+	}
+
+	private void RegisterModulesCreatedByRider()
+	{
+		ExtraModuleNames.AddRange(new string[] { "EditorValidDataCheckEditor" });
 	}
 }
